@@ -11,10 +11,12 @@
   import Commands from './command';
   import CommandList from './CommandList.svelte';
   import { slashVisible, slashItems, slashProps, editorWidth } from '$lib/stores';
-
+    
   // Live Collaboration
   import * as Y from "yjs";
-  import { HocuspocusProvider } from "@hocuspocus/provider";
+  import Collaboration from '@tiptap/extension-collaboration'
+  import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
+  import { HocuspocusProvider } from '@hocuspocus/provider'
 
   export let content;
   let output = false;
@@ -73,6 +75,14 @@
   let element, editor, w;
 
   onMount(() => {
+    const ydoc = new Y.Doc();
+
+    const provider = new HocuspocusProvider({
+      url: "ws://127.0.0.1:1234",
+      name: "example-document",
+      document: ydoc,
+    });
+
     if (browser) {
       editor = new Editor({
         element: element,
@@ -89,7 +99,14 @@
           Link,
           Commands.configure({
             suggestion
-          })
+          }),
+          Collaboration.configure({
+            document: ydoc,
+          }),
+          CollaborationCursor.configure({
+            provider: provider,
+            user: { name: "John Doe", color: "#ffcc00" },
+          }),
         ],
         content,
         onTransaction: () => {

@@ -17,7 +17,7 @@
 {#if $slashVisible}
   <div class="w-full absolute h-screen top-0" on:keydown={() => {}} on:click={() => ($slashVisible = false)} />
   <div
-    class="absolute bg-white shadow-xl w-96 h-96 max-w-full rounded-lg overflow-scroll"
+    class="absolute bg-white shadow-xl w-96 h-96 max-w-full border rounded-lg overflow-scroll"
     style="left: {$slashLocaltion.x}px; top: {$slashLocaltion.y + $slashLocaltion.height + 384 >
     height
       ? $slashLocaltion.y - $slashLocaltion.height - 384

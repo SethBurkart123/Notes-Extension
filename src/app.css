@@ -2,3 +2,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Give a remote user a caret */
+.collaboration-cursor__caret {
+border-left: 1px solid #0d0d0d;
+border-right: 1px solid #0d0d0d;
+margin-left: -1px;
+margin-right: -1px;
+pointer-events: auto;
+position: relative;
+word-break: normal;
+}
+
+/* Render the username above the caret */
+.collaboration-cursor__label {
+    @apply bg-[#0d0d0d] text-xs font-normal text-white -left-[1px] rounded-t-md rounded-br-md absolute -top-4 py-[0.1rem] px-[0.3rem] select-none whitespace-nowrap opacity-0 transition scale-95;
+}
+
+.collaboration-cursor__caret:hover .collaboration-cursor__label {
+    @apply opacity-100 scale-100;
+}
