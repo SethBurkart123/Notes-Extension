@@ -6,6 +6,7 @@
   import Placeholder from '@tiptap/extension-placeholder';
   import TaskList from '@tiptap/extension-task-list';
   import TaskItem from '@tiptap/extension-task-item';
+  import BubbleMenu from '@tiptap/extension-bubble-menu';
   import Link from '@tiptap/extension-link';
   import suggestion from './suggestion';
   import Commands from './command';
@@ -18,7 +19,6 @@
   import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
   import { HocuspocusProvider } from '@hocuspocus/provider'
 
-  export let content;
   let output = false;
   let outputType;
 
@@ -107,8 +107,10 @@
             provider: provider,
             user: { name: "John Doe", color: "#ffcc00" },
           }),
+          BubbleMenu.configure({
+            element: document.querySelector('.menu'),
+          }),
         ],
-        content,
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           editor = editor;
@@ -131,6 +133,12 @@
   <div bind:this={element} on:keydown|capture={handleKeydown} />
 </div>
 
+<div class="menu bg-black text-white">
+  <button>test</button>
+  <button>test2</button>
+  <button>test3</button>
+</div>
+
 <CommandList {selectedIndex} />
 
 <div class="sm:flex my-4">
@@ -142,15 +150,6 @@
     class="m-2 border rounded-full px-4 py-2 border-slate-500 {outputType == 'json'
       ? 'bg-blue-200'
       : ''}">See JSON Output</button
-  >
-  <button
-    on:click={() => {
-      output = editor.getHTML();
-      outputType = 'html';
-    }}
-    class=" m-2 border rounded-full px-4 py-2 border-slate-500 {outputType == 'html'
-      ? 'bg-blue-200'
-      : ''}">See HTML Output</button
   >
 </div>
 

@@ -1,7 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+    font-family: 'Inter', sans-serif;
+}
+
 
 /* Give a remote user a caret */
 .collaboration-cursor__caret {
@@ -16,7 +23,7 @@ word-break: normal;
 
 /* Render the username above the caret */
 .collaboration-cursor__label {
-    @apply bg-[#0d0d0d] text-xs font-normal text-white -left-[1px] rounded-t-md rounded-br-md absolute -top-4 py-[0.1rem] px-[0.3rem] select-none whitespace-nowrap opacity-0 transition scale-95;
+    @apply bg-[#0d0d0d] origin-bottom-left text-xs font-normal text-white -left-[1px] rounded-t-md rounded-br-md absolute -top-4 py-[0.1rem] px-[0.3rem] select-none whitespace-nowrap opacity-0 transition scale-95;
 }
 
 .collaboration-cursor__caret:hover .collaboration-cursor__label {

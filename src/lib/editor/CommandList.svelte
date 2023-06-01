@@ -1,6 +1,7 @@
 <script>
   export let selectedIndex = 0;
   import { slashVisible, slashItems, slashLocaltion, slashProps } from '$lib/stores';
+	import { fly } from 'svelte/transition';
 
   let height;
 
@@ -17,16 +18,16 @@
 {#if $slashVisible}
   <div class="w-full absolute h-screen top-0" on:keydown={() => {}} on:click={() => ($slashVisible = false)} />
   <div
+   transition:fly={{ y: 10, duration: 300 }}
     class="absolute bg-white shadow-xl w-96 h-96 max-w-full border rounded-lg overflow-scroll"
     style="left: {$slashLocaltion.x}px; top: {$slashLocaltion.y + $slashLocaltion.height + 384 >
     height
       ? $slashLocaltion.y - $slashLocaltion.height - 384
-      : $slashLocaltion.y + $slashLocaltion.height}px;"
-  >
-    <div class="p-2 text-sm text-slate-500">BLOCKS</div>
+      : $slashLocaltion.y + $slashLocaltion.height}px;">
+    <div class="p-2 text-sm text-slate-500">Basic Blocks</div>
     {#each $slashItems as { title, subtitle, command }, i}
       <div
-        class="p-3 cursor-pointer {i == selectedIndex ? 'bg-slate-100' : 'bg-white'}"
+        class="p-3 transition duration-300 cursor-pointer {i == selectedIndex ? 'bg-slate-100' : 'bg-white'}"
         on:mouseenter={() => (selectedIndex = i)}
         on:click={() => {
           $slashVisible = false;
@@ -35,7 +36,7 @@
         on:keydown={() => {}}
         bind:this={elements[i]}
       >
-        <div class="">{title}</div>
+        <div>{title}</div>
         <div class="text-sm text-slate-500">{subtitle ? subtitle : ''}</div>
       </div>
     {/each}
