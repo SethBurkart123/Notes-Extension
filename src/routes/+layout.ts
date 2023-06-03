@@ -1,4 +1,4 @@
-export const load = ({ url }) => {
+export const load = ({ url }: any ) => {
 	const { pathname } = url;
 
 	return {

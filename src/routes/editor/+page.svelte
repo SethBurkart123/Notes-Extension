@@ -1,6 +1,6 @@
 <script>
-  import Editor from '$lib/editor/index.svelte';
-  let title = 'Svelte Tiptap Notion Clone (Svnotion?)';
+  import Editor from '$lib/Editor/Editor.svelte';
+  let title = 'Wow nice editor';
 </script>
 
 <svelte:head>
@@ -21,7 +21,7 @@
     bind:textContent={title}
     class="focus:outline-none text-4xl font-semibold mb-4"
   />
-  <Editor />
+  <!--Editor /-->
 </div>
 
 <style>

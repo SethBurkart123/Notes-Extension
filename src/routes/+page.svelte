@@ -1,7 +1,7 @@
 <script>
-  import Editor from '$lib/editor/index.svelte';
+  import Editor from '$lib/Editor/Editor.svelte';
 
-  let title = 'Svelte Tiptap Notion Clone (Svnotion?)';
+  let title = 'Nice Title';
 </script>
 
 <h1

@@ -1,0 +1,47 @@
+h1, h2, h3, h4, h5, h6, p, ul, ol {
+  width: 100%;
+  min-width: 2px !important;
+}
+
+.ProseMirror h1, .ProseMirror h2, .ProseMirror h3 {
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror p::before, .ProseMirror h1::before, .ProseMirror h2::before, .ProseMirror h3::before, .ProseMirror h4::before, .ProseMirror h5::before, .ProseMirror h6::before {
+  content: attr(data-placeholder);
+  color: #adb5bd;
+  float: left;
+  height: 0;
+}
+
+.ProseMirror p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+ul[data-type='taskList'] {
+  list-style: none;
+  padding-left: 2px;
+}
+ul[data-type='taskList'] li {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+}
+ul[data-type='taskList'] li div {
+  display: flex;
+}
+ul[data-type='taskList'] li p {
+  margin: 0;
+}
+ul[data-type='taskList'] li label {
+  padding-right: 12px;
+}
+ul[data-type='taskList'] li label input {
+  border-radius: 0.25rem;
+  border-color: #cbd5e1;
+}
+
+hr {
+  background-color: green;
+}

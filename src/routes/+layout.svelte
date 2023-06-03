@@ -6,10 +6,10 @@
   export let data;
 </script>
 
-<div class="flex">
-  <!-- <Sidebar /> -->
+<div class="flex h-screen">
+  <Sidebar />
   {#key data.pathname}
-    <div class="max-w-3xl p-2 m-auto my-16" 
+    <div class="overflow-y-scroll h-screen py-16 p-2 px-32" 
       in:fly={{ y: 50, duration: 300, delay: 400 }}
       out:fly={{ y: -50, duration: 300 }}>
       <slot />
