@@ -1,11 +1,54 @@
 <script lang="ts">
-  import { slashVisible, slashItems, slashLocation, slashProps, selectedIndex, scrollIntoView } from '$lib/stores';
-	import { get } from 'svelte/store';
+  import { slashVisible, slashItems, slashLocation, slashProps, selectedIndex, scrollIntoView } from '$lib/Editor/Plugins/Commands/stores';
 	import { fly } from 'svelte/transition';
+	import { get } from 'svelte/store';
+
+  export function handleKeydown(event: any, editor: any) {
+    if (!get(slashVisible)) return;
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      upHandler();
+      return true;
+    }
+
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      downHandler();
+      return true;
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      selectItem(editor);
+      return true;
+    }
+
+    return false;
+  }
+
+  function upHandler() {
+    scrollIntoView.set(true);
+    selectedIndex.set((get(selectedIndex) + get(slashItems).length - 1) % get(slashItems).length);
+  }
+
+  function downHandler() {
+    scrollIntoView.set(true);
+    selectedIndex.set((get(selectedIndex) + 1) % get(slashItems).length);
+  }
+
+  function selectItem(editor: any) {
+    const item = get(slashItems)[get(selectedIndex)];
+
+    if (item) {
+      let range = get(slashProps).range;
+      item.command({ editor, range });
+    }
+  }
 
   let height: number;
-
   let elements: any = [];
+  
   $: {
     if (get(scrollIntoView) && elements[0] != null) {
       elements[$selectedIndex]?.scrollIntoView({ block: 'end', behavior: 'smooth' });
@@ -13,57 +56,6 @@
     }
   }
 
-
-
-type SlashItem = {
-  title: string;
-  subtitle: string;
-  image: any;
-  command: ({ editor, range }: any) => void;
-};
-
-export function handleKeydown(event: any, editor: any, slashProps: any) {
-  if (!slashVisible) return;
-
-  if (event.key === 'ArrowUp') {
-    event.preventDefault();
-    upHandler();
-    return true;
-  }
-
-  if (event.key === 'ArrowDown') {
-    event.preventDefault();
-    downHandler();
-    return true;
-  }
-
-  if (event.key === 'Enter') {
-    event.preventDefault();
-   selectItem(editor, slashProps);
-    return true;
-  }
-
-  return false;
-}
-
-function upHandler() {
-  scrollIntoView.set(true);
-  selectedIndex.set((get(selectedIndex) + get(slashItems).length - 1) % get(slashItems).length);
-}
-
-function downHandler() {
-  scrollIntoView.set(true);
-  selectedIndex.set((get(selectedIndex) + 1) % get(slashItems).length);
-}
-
-function selectItem(editor: any, slashProps: any) {
-  const item = get(slashItems)[get(selectedIndex)];
-
-  if (item) {
-    let range = slashProps.range;
-    item.command({ editor, range });
-  }
-}
 </script>
 
 <svelte:window bind:innerHeight={height} />
@@ -84,7 +76,6 @@ function selectItem(editor: any, slashProps: any) {
         on:mouseenter={() => selectedIndex.set(i)}
         on:click={() => {
           $slashVisible = false;
-          // @ts-ignore
           command($slashProps);
         }}
         on:keydown={() => {}}

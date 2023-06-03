@@ -19,29 +19,26 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
   line-height: 1.5;
 }
 
-ul[data-type='taskList'] {
-  list-style: none;
-  padding-left: 2px;
-}
-ul[data-type='taskList'] li {
-  display: flex;
-  align-items: center;
-  margin: 6px 0;
-}
-ul[data-type='taskList'] li div {
-  display: flex;
-}
-ul[data-type='taskList'] li p {
-  margin: 0;
-}
-ul[data-type='taskList'] li label {
-  padding-right: 12px;
-}
-ul[data-type='taskList'] li label input {
-  border-radius: 0.25rem;
-  border-color: #cbd5e1;
+ul[data-type="taskList"] {
+	list-style: none;
+	padding: 0;
 }
 
-hr {
-  background-color: green;
+ul[data-type="taskList"] p {
+	margin: 0;
+}
+
+ul[data-type="taskList"] li {
+	display: flex;
+}
+
+ul[data-type="taskList"] li > label {
+	flex: 0 0 auto;
+	margin-right: 0.5rem;
+	user-select: none;
+}
+
+ul[data-type="taskList"] li > div {
+	flex: 1 1 auto;
+  margin: 3px 0;
 }

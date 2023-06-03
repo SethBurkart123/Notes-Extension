@@ -20,7 +20,7 @@ type Components = Component[];
 
 type EditorProps = {
   editor: any;
-  range: any;
+  range: number | null;
 };
 
 type Location = {

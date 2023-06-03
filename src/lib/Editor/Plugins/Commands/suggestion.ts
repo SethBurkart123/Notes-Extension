@@ -1,4 +1,4 @@
-import { slashVisible, slashItems, slashLocation, slashProps } from '$lib/stores';
+import { slashVisible, slashItems, slashLocation, slashProps } from '$lib/Editor/Plugins/Commands/stores';
 
 export default {
   items: ({ query }: any) => {

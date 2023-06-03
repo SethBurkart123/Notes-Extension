@@ -9,7 +9,7 @@
 <div class="flex h-screen">
   <Sidebar />
   {#key data.pathname}
-    <div class="overflow-y-scroll h-screen py-16 p-2 px-32" 
+    <div class="overflow-y-scroll h-screen py-16 p-2 w-full" 
       in:fly={{ y: 50, duration: 300, delay: 400 }}
       out:fly={{ y: -50, duration: 300 }}>
       <slot />

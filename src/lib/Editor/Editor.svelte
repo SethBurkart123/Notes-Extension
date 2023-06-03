@@ -9,18 +9,18 @@
   import TaskItem from '@tiptap/extension-task-item';
   import StarterKit from '@tiptap/starter-kit';
   import Link from '@tiptap/extension-link';
+  
+  import { browser } from '$app/environment';
   import { Editor } from '@tiptap/core';
 
   //import { LanguageTool } from './Plugins/Spellcheck/Spellcheck';
   //import type { Match } from './Plugins/Spellcheck/Spellcheck';
 
-  import { browser } from '$app/environment';
   // Live Collaboration
   import { HocuspocusProvider } from '@hocuspocus/provider'
   import { IndexeddbPersistence } from 'y-indexeddb';
   import * as Y from "yjs";
   
-  import { slashVisible, slashItems, slashProps, editorWidth, selectedIndex } from '$lib/stores';
   import CommandList from '$lib/Editor/Plugins/Commands/CommandList.svelte';
   import suggestion from '$lib/Editor/Plugins/Commands/suggestion';
 
@@ -31,7 +31,6 @@
   let outputType: string;
   let commandListInstance: any;
 
-  $: $editorWidth = w ? w : 0;
 
   let element: HTMLElement;
   let editor: Editor;
@@ -109,7 +108,7 @@
 </script>
 
 <div class="prose prose-slate sm:prose-xl lg:prose-3xl" bind:clientWidth={w}>
-  <div bind:this={element} on:keydown|capture={(event) => commandListInstance.handleKeydown(event, editor, $slashVisible, $slashItems, $slashProps)}  />  <!-- handleKeydown(event, editor, $slashVisible, $slashItems, selectItem, $slashProps) -->
+  <div  class="w-full" bind:this={element} on:keydown|capture={(event) => commandListInstance.handleKeydown(event, editor)} />  <!-- handleKeydown(event, editor, $slashVisible, $slashItems, selectItem, $slashProps) -->
 </div>
 
 <div class="menu bg-black rounded-full text-white">
