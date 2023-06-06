@@ -3,6 +3,7 @@
   import Collaboration from '@tiptap/extension-collaboration'
   import Placeholder from '@tiptap/extension-placeholder';
   import Commands from '$lib/Editor/Plugins/Commands/command';
+  import { Dropcursor } from "@tiptap/extension-dropcursor";
   import BubbleMenu from '@tiptap/extension-bubble-menu';
   import Typography from '@tiptap/extension-typography';
   import TaskList from '@tiptap/extension-task-list';
@@ -88,6 +89,7 @@
           BubbleMenu.configure({
             element: document.querySelector('.menu') as HTMLElement,
           }),
+          Dropcursor.configure({ width: 5, color: "#ddeeff" }),
         ],
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
