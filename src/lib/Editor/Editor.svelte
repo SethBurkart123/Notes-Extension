@@ -113,10 +113,10 @@
   <div  class="w-full" bind:this={element} on:keydown|capture={(event) => commandListInstance.handleKeydown(event, editor)} />  <!-- handleKeydown(event, editor, $slashVisible, $slashItems, selectItem, $slashProps) -->
 </div>
 
-<div class="menu bg-black rounded-full text-white">
+<!-- <div class="menu bg-black rounded-full text-white">
   eee
 </div>
-
+ -->
 <CommandList bind:this={commandListInstance} />
 
 <div class="sm:flex my-4">
